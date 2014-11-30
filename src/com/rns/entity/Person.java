@@ -43,7 +43,7 @@ public class Person {
 		
 		return calculateBodyMassIndex(1.0f);
 	}
-	public double calculateBodyMassIndex(float gravity){
+	public double calculateBodyMassIndex(double gravity){
 		
 		double bmi = ( _Weight * gravity ) / ( _Height * _Height);
 		

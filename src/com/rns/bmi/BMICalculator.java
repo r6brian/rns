@@ -1,9 +1,38 @@
 package com.rns.bmi;
 
+import java.awt.FlowLayout;
+import java.awt.List;
+
+import javax.swing.*;
+
 import com.rns.entity.Person;
 import com.rns.util.NumericUtil;
+import com.rns.bmi.BMIWindow;
 
-public class BMICalculator {
+public class BMICalculator extends JFrame{
+	
+	//GUI Frame and buttons
+	
+	//Enum of planet gravitational forces (relative to earth?)
+	//Access using Planet.planetname.GForce
+	public enum Planet{
+		EARTH(1.0),
+		VENUS(0.78),
+		MARS(0.39),
+		JUPITER(2.65),
+		SATURN(1.17),
+		URANUS(1.05),
+		NEPTUNE(1.23);
+	
+	private double GForce;
+	
+	double getGForce(){return GForce;}
+	
+	private Planet(double G){
+		this.GForce = G;
+	};
+}
+
 
 	public static void main(String[] args) {
 		
@@ -14,44 +43,12 @@ public class BMICalculator {
 		//5	Uranus	1.05
 		//6	Neptune	1.23
 		
-		Person person = null;
+		new BMIWindow();
 		
-		person = new Person("brian",26.0f,1.75f);
-		System.out.println(person.calculateBodyMassIndex());
-		System.out.println(person.calculateBodyMassIndex(getGravity("venus")));
+		Planet cur_Planet;
+		cur_Planet = Planet.EARTH;
 		
-		person = new Person();
-		
-		if ( args != null && args.length > 0 ){
-				
-			String input = args[0];
-			
-			String [] values = input.split(",");
-			if ( values != null && values.length == 5  ){
-
-				person.setName(values[0]);
-				
-				float height = NumericUtil.getFloatValue(values[1]);
-				person.setHeight(height);
-				
-				float weight = NumericUtil.getFloatValue(values[2]);
-				person.setWeight(weight);
-				
-				System.out.println(person.calculateBodyMassIndex(getGravity(values[3])));
-
-			}
-		}		
-		
-		//this is a method to set the height of a person
-		
-		person.setHeight(1.75f);
-		person.setWeight(26.0f);
-		person.setName("Jonah");
-		System.out.println(person.calculateBodyMassIndex());
-		System.out.println(person.calculateBodyMassIndex(getGravity("venus")));		
-		
-
-	}
+}
 	
 	private static float getGravity(String planet){
 		float gravity = 1.0f;
@@ -66,7 +63,6 @@ public class BMICalculator {
 				gravity = 1.0f;
 			}
 		}
-		
 		return gravity;
 	}
 
