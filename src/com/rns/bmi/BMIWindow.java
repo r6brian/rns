@@ -5,11 +5,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.rns.bmi.BMICalculator.Planet;
+
+import com.rns.bmi.Planet;
 import com.rns.entity.Person;
 
+//Inherits the methods from the JFrame object
 public class BMIWindow extends JFrame{
 
+	//Creating the JFrame components
 	private String s_bmi = "";
 	
 	private static JFrame bmicalc = new JFrame("BMI Calculator");
@@ -24,7 +27,7 @@ public class BMIWindow extends JFrame{
 	private JLabel j_planets = new JLabel("Planet");
 	private JComboBox j_planets_input = new JComboBox(Planet.values());
 	
-	
+//Constructor	
 	BMIWindow()
 	{
 		j_bmi.setEditable(false);
@@ -46,9 +49,11 @@ public class BMIWindow extends JFrame{
 		bmicalc.pack();
 		bmicalc.setVisible(true);
 	}
+	//The logic that is run when the button is pressed
 private class SubmitButtonListener implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		Person person = new Person();
+		//Checks for the correct input
 		try{
 		person = new Person(j_fname_input.getText(), Float.parseFloat(j_mass_input.getText()),
 				Float.parseFloat(j_height_input.getText())/100);
@@ -60,6 +65,7 @@ private class SubmitButtonListener implements ActionListener{
 			s_bmi = "Incorrect Input!";
 			j_bmi.setText(s_bmi);
 		}
+		//Don't try this at home kids!
 		if (!s_bmi.equals("Incorrect Input!")){
 		Planet current_planet = (Planet) j_planets_input.getSelectedItem();
 		s_bmi = Double.toString(person.calculateBodyMassIndex(current_planet.getGForce()));}
