@@ -7,5 +7,6 @@ public class BMICalculator{
 	public static void main(String[] args) {
 		//Create the GUI window
 		new BMIWindow();
+		
 	}
 }

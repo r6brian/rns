@@ -1,5 +1,5 @@
 package com.rns.bmi;
-
+//Simple enum to  hold each planets gravitational force relative to earth
 public enum Planet{
 	EARTH(1.0),
 	VENUS(0.78),

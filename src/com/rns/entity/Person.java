@@ -40,14 +40,8 @@ public class Person {
 	}
 	
 	public double calculateBodyMassIndex(){
-		
-		return calculateBodyMassIndex(1.0f);
-	}
+		return calculateBodyMassIndex(1.0f);}
 	public double calculateBodyMassIndex(double gravity){
-		
 		double bmi = ( _Weight * gravity ) / ( _Height * _Height);
-		
-		return bmi;
-	}
-	
+		return bmi;}
 }
