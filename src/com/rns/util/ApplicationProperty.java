@@ -73,8 +73,55 @@ public class ApplicationProperty {
     	String value = GetPropertyValue(propertyValue);
     	returnValue = Integer.parseInt(value);
     	return returnValue;
-    	
     }
     
+    public int GetIntProperty(String propertyValue, int defaultValue){
+    	
+    	int returnValue = 0;
+    	String value = GetPropertyValue(propertyValue);
+    	
+    	if ( !NumericUtil.isEmptyOrNull(value)){
+    		
+    		if ( NumericUtil.isNumeric(value)){
+            	returnValue = Integer.parseInt(value);
+    		}
+    	}
     
+    	if ( returnValue <= -1 )
+    		returnValue = defaultValue;
+    	
+    	return returnValue;
+    }
+  
+
+    public boolean GetBooleanProperty(String propertyValue){
+    	boolean returnValue = false;
+    	String value = GetPropertyValue(propertyValue);
+    	
+    	if ( !NumericUtil.isEmptyOrNull(value)){
+    		
+            	returnValue = Boolean.parseBoolean(value);
+    	}
+    	return returnValue;
+    }
+    
+    public String[] getList(String propertyValue){
+    	
+    	String [] items = null;
+    	
+    	String value = GetPropertyValue(propertyValue);
+    	System.out.print(value);
+    	
+    	if ( !NumericUtil.isEmptyOrNull(value)){
+    		if ( value.contains(",")){
+    			items = value.split(",");
+    		} else {
+    			items = new String [1];
+    			items[0] = value;
+    			
+    		}
+    	}
+    	return items;
+    }
+   
 }
