@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.apache.log4j.Logger;
 
+import com.rns.entity.Person;
 import com.rns.util.ApplicationProperty;
 import com.rns.util.NumericUtil;
 
@@ -14,10 +15,10 @@ public class BMIManager {
 
 	private static Logger logger = Logger.getLogger(BMIManager.class);
 	
-	public ArrayList<String> readStrings(){
+	public ArrayList<Person> readPersons(){
 		
 		logger.info("ENTER processStrings()");
-		ArrayList<String> strings = null;
+		ArrayList<Person> persons = null;
 		
 		String fileName = ApplicationProperty.getInstance().GetPropertyValue("input.fileName");
 		String filePath = ApplicationProperty.getInstance().GetPropertyValue("input.filePath");
@@ -35,10 +36,27 @@ public class BMIManager {
 
 					if ( ! NumericUtil.isEmptyOrNull(line)){
 
-
+						
+						if ( line.contains(",")){
+							
+							String [] items = line.split(",");
+							if ( items != null && items.length == 4){
+								Person person = new Person();
+								person.setName(items[0]);
+								person.setHeight(NumericUtil.getFloatValue(items[1]));
+								person.setWeight(NumericUtil.getFloatValue(items[2]));
+								
+								
+								
+								if ( persons == null)
+									persons = new ArrayList<Person>();
+								
+								
+								persons.add(person);
+							}
+						}
 					}
 				}
-
 			}
 		} 
 		catch (IOException e) {
@@ -51,6 +69,6 @@ public class BMIManager {
 			}
 		}
 		logger.info("EXIT readStrings() ");
-		return strings;
+		return persons;
 	}
 }
