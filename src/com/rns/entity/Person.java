@@ -5,9 +5,14 @@ public class Person {
 	private float _Height = 0.0f;
 	private float _Weight = 0.0f;
 	private String _Name = "";
+	private String _Planet = "";
 
 	public Person(){
 		
+	}
+	
+	public Person( String name){
+		_Name = name;
 	}
 
 	public Person(String name, float weight, float height){
@@ -18,6 +23,7 @@ public class Person {
 		
 	}
 
+	
 	public void setHeight(float height){
 		_Height = height;
 	}
@@ -39,10 +45,18 @@ public class Person {
 		return _Name;
 	}
 	
+	public void setPlanet(String planet){
+		_Planet = planet;
+	}
+	public String getPlanet(){
+		return _Planet;
+	}
+	
 	public double calculateBodyMassIndex(){
 		
-		return calculateBodyMassIndex(1.0f);
+		return calculateBodyMassIndex(0.99f);
 	}
+	
 	public double calculateBodyMassIndex(float gravity){
 		
 		double bmi = ( _Weight * gravity ) / ( _Height * _Height);
